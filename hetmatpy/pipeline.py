@@ -1,8 +1,7 @@
 import itertools
 
+import mpmath
 import pandas
-import scipy.special
-import scipy.stats
 
 import hetmatpy.degree_group
 import hetmatpy.degree_weight
@@ -52,7 +51,7 @@ def combine_dwpc_dgp(graph, metapath, damping, ignore_zeros=False, max_p_value=1
         else:
             row['p_value'] = None if row['sum'] == 0 else (
                 row['nnz'] / row['n'] *
-                (1 - scipy.special.gammainc(row['alpha'], row['beta'] * row['dwpc']))
+                (mpmath.gammainc(row['alpha'], a=row['beta'] * row['dwpc'], regularized=True))
             )
         if row['p_value'] is not None and row['p_value'] > max_p_value:
             continue

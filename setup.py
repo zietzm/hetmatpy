@@ -10,6 +10,7 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=[
         'hetio>=0.2.9',
+        'mpmath',
         'numpy',
         'pandas',
         'scipy',
